@@ -1,42 +1,24 @@
 # Circuit Solver
 
-Python circuit analysis tools I built for my EE diploma at TAR UMT, KL.
+C++ circuit analysis tools I built for my EE diploma at TAR UMT.
 
-Does nodal analysis, mesh analysis, Delta-Star transform, Thevenin equivalent. Mostly used for homework verification and lab prep.
+Does nodal analysis, Delta-Star transform. Mostly used for homework verification and lab prep.
 
-## Setup
+## Build
 
 ```
-pip install numpy
-```
-
-## Usage
-
-```python
-from circuit_solver import Circuit
-
-c = Circuit()
-c.add_voltage_source("VS", "A", "GND", 10)
-c.add_resistor("R1", "A", "B", 1000)
-c.add_resistor("R2", "B", "GND", 2000)
-c.solve()
-c.print_voltages()
-```
-
-Delta-Star transform:
-```python
-from delta_star import delta_to_star
-Ra, Rb, Rc = delta_to_star(680, 1000, 1200)
+g++ circuit_solver.cpp -o solver
+g++ delta_star.cpp -o delta_star
 ```
 
 ## Files
 
-- `circuit_solver.py` — MNA-based DC solver
-- `delta_star.py` — Delta <-> Star conversion
-- `requirements.txt` — just numpy
+- `circuit_solver.cpp` — MNA-based DC solver (voltage divider example)
+- `delta_star.cpp` — Delta <-> Star conversion (interactive, for(;;) loop)
+- `requirements.txt` — nothing needed, pure C++
 
-## Notes
+## TODO
 
-- Tested with Python 3.11, numpy 1.24
-- The Thevenin function is incomplete (TODO)
-- Superposition is a placeholder, not fully working
+- add mesh analysis
+- add thevenin equivalent
+- add more component types (capacitor, inductor for AC)
